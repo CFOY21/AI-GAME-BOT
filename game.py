@@ -72,9 +72,10 @@ class pumpkin(pygame.sprite.Sprite):
 		self.image = pygame.image.load(os.path.join('images', 'pumkin_small.png')).convert()
 		self.rect = self.image.get_rect()
 		# sets how fast the object moves
-		self.dx = 1
+		self.dx = -1
 		self.dy = 150
 		self.rect.y =200
+		self.rect.x = 400
 
 
 	def update(self):
@@ -84,8 +85,8 @@ class pumpkin(pygame.sprite.Sprite):
 		
 
 		#deletes object as it leaves screen
-		if self.rect.x ==800:
-			self.rect.x =0
+		if self.rect.x ==0:
+			self.rect.x =800
 
 			# this will control the frame rate
 		if self.rect.x%5 ==0:
@@ -96,7 +97,6 @@ class pumpkin(pygame.sprite.Sprite):
 		collision = pygame.sprite.spritecollideany(pumpkin_enemy,all_sprites)
 
 		if collision:
-			if collision:
 				print('collision detected')
 		#self.rect.
 
@@ -109,7 +109,8 @@ class Score():
 	def update(self):
 
 
-		if pumpkin_enemy.rect.x < play1.rect.x:
+		#if pumpkin_enemy.rect.x < play1.rect.x:
+		if pumpkin_enemy.rect.x < 2:
 			self.score += 1 
 
 		self.player_score = self.score_font.render(str(self.score), True,(255,0,0))
